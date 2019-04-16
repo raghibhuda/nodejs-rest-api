@@ -11,5 +11,6 @@
 * "passport": "^0.4.0",
 * "passport-jwt": "^4.0.0",
 * "sequelize": "^5.6.0"
+
 Check package.json for other packages   
 
