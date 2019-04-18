@@ -1,5 +1,7 @@
 import Users from '../controllers/user';
 import Tasks from '../controllers/task';
+import Categories from '../controllers/admin/category';
+import Products from '../controllers/admin/product';
 import cors from 'cors';
 import passport from 'passport';
 require('../config/passport')(passport);
@@ -23,5 +25,20 @@ export default (app) => {
     app.post('/api/all-task', cors(corsConfig), Tasks.allTask);
     app.post('/api/update-task', cors(corsConfig), Tasks.update);
     app.post('/api/delete-task', cors(corsConfig), Tasks.delete);
-    
+
+    // Category handler routes 
+    // app.post('/api/admin/create-category', cors(corsConfig), Categories.create);
+    // app.post('/api/admin/all-categories', cors(corsConfig), Categories.allCategories);
+    // app.post('/api/admin/show-category', cors(corsConfig), Categories.allCategories);
+    // app.post('/api/admin/update-category', cors(corsConfig), Categories.update);
+    // app.post('/api/admin/delete-category', cors(corsConfig), Categories.delete);
+
+    // Product handler routes 
+
+    // app.post('/api/admin/create-product', cors(corsConfig), Products.create);
+    // app.post('/api/admin/all-products', cors(corsConfig), Products.allProducts);
+    // app.post('/api/admin/update-product', cors(corsConfig), Products.update);
+    // app.post('/api/admin/delete-product', cors(corsConfig), Products.delete);
+
+
 }

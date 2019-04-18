@@ -1,28 +1,23 @@
-import model from '../models';
-import getToken from '../config/tokenChecker';
+import model from '../../models';
+import getToken from '../../config/tokenChecker';
 import passport from 'passport';
-import jwt from 'jsonwebtoken';
-require('../config/passport')(passport);
+require('../../config/passport')(passport);
 
-const { Task } = model;
-
-class Tasks {
+const { Category } = model;
+class Categories {
     static create(req, res) {
         const { name } = req.body;
         let token = getToken(req.headers);
         if (token) {
-            const getCurrentUser = jwt.decode(token);
-            let userId = getCurrentUser.id;
-            return Task
+            return Category
                 .create({
-                    name,
-                    userId
+                    name
                 })
-                .then((task) => {
+                .then((category) => {
                     return res.status(201).send({
                         success: true,
-                        task: task,
-                        message: 'Task created successfully ',
+                        category: category,
+                        message: 'Catgeroy created successfully ',
                     })
                 })
                 .catch((error) => res.status(400).send(error));
@@ -34,22 +29,16 @@ class Tasks {
         }
 
     }
-
-    static allTask(req, res) {
+    
+    static allCategories(req, res) {
         let token = getToken(req.headers);
         if (token) {
-            const getCurrentUser = jwt.decode(token);
-            let userId = getCurrentUser.id;
-            return Task
-                .findAll({
-                    where: {
-                        userId: userId,
-                    }
-                })
-                .then((tasks) => {
+            return Category
+                .findAll()
+                .then((categories) => {
                     return res.status(201).send({
                         success: true,
-                        tasks: tasks,
+                        categories: categories,
                         message: 'All tasks here'
                     })
                 })
@@ -64,23 +53,22 @@ class Tasks {
 
     static update(req, res) {
         let token = getToken(req.headers);
-        // const { taskID, name } = req.body
         if (token) {
-            return Task
+            return Category
                 .findOne({
                     where: {
                         id: req.body.id
                     }
                 })
-                .then((task) => {
+                .then((category) => {
                     console.log(task, "==============");
-                    task.update({
+                    category.update({
                         name: req.body.name
                     })
                         .then((task) => {
                             return res.status(201).send({
                                 success: true,
-                                task: task,
+                                category: category,
                                 message: 'Task Edited '
                             })
                         })
@@ -99,7 +87,7 @@ class Tasks {
     static delete(req, res) {
         let token = getToken(req.headers);
         if (token) {
-            return Task
+            return Category
                 .destroy({
                     where: {
                         id: req.body.id
@@ -121,5 +109,3 @@ class Tasks {
         }
     }
 }
-
-export default Tasks;
