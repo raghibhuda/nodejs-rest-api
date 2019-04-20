@@ -18,14 +18,13 @@ module.exports = {
       },
       availability: {
         type: Sequelize.BOOLEAN,
-        defaultValue:true,
+        defaultValue: true,
       },
       quantity: {
-        allowNull: false,
         type: Sequelize.INTEGER,
-        defaultValue:1,
+        defaultValue: 1,
       },
-      categoryID: {
+      categoryId: {
         allowNull: false,
         type: Sequelize.INTEGER
       },

@@ -27,18 +27,18 @@ export default (app) => {
     app.post('/api/delete-task', cors(corsConfig), Tasks.delete);
 
     // Category handler routes 
-    // app.post('/api/admin/create-category', cors(corsConfig), Categories.create);
-    // app.post('/api/admin/all-categories', cors(corsConfig), Categories.allCategories);
-    // app.post('/api/admin/show-category', cors(corsConfig), Categories.allCategories);
-    // app.post('/api/admin/update-category', cors(corsConfig), Categories.update);
-    // app.post('/api/admin/delete-category', cors(corsConfig), Categories.delete);
+    app.post('/api/admin/create-category', cors(corsConfig), Categories.create);
+    app.post('/api/admin/all-categories', cors(corsConfig), Categories.allCategories);
+    app.post('/api/admin/show-category', cors(corsConfig), Categories.show);
+    app.post('/api/admin/update-category', cors(corsConfig), Categories.update);
+    app.post('/api/admin/delete-category', cors(corsConfig), Categories.delete);
 
     // Product handler routes 
 
-    // app.post('/api/admin/create-product', cors(corsConfig), Products.create);
+    app.post('/api/admin/create-product', cors(corsConfig), Products.create);
     // app.post('/api/admin/all-products', cors(corsConfig), Products.allProducts);
-    // app.post('/api/admin/update-product', cors(corsConfig), Products.update);
-    // app.post('/api/admin/delete-product', cors(corsConfig), Products.delete);
+    app.post('/api/admin/update-product', cors(corsConfig), Products.update);
+    app.post('/api/admin/delete-product', cors(corsConfig), Products.delete);
 
 
 }

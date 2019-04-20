@@ -29,7 +29,7 @@ class Categories {
         }
 
     }
-    
+
     static allCategories(req, res) {
         let token = getToken(req.headers);
         if (token) {
@@ -40,6 +40,31 @@ class Categories {
                         success: true,
                         categories: categories,
                         message: 'All tasks here'
+                    })
+                })
+                .catch((error) => res.status(400).send(error));
+        } else {
+            return res.status(403).send({
+                success: false,
+                message: "Unauthorized"
+            });
+        }
+    }
+
+    static show(req, res) {
+        let token = getToken(req.headers);
+        if (token) {
+            return Category
+                .findOne({
+                    where: {
+                        id: req.body.id
+                    }
+                })
+                .then((category) => {
+                    return res.status(201).send({
+                        success: true,
+                        category: category,
+                        message: 'Showing a single category'
                     })
                 })
                 .catch((error) => res.status(400).send(error));
@@ -109,3 +134,5 @@ class Categories {
         }
     }
 }
+
+export default  Categories;

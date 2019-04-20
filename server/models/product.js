@@ -21,9 +21,8 @@ module.exports = (sequelize, DataTypes) => {
     },
     quantity:{
       type:DataTypes.INTEGER,
-      defaultValue:1,
     },
-    categoryID: {
+    categoryId: {
       type:DataTypes.INTEGER,
       allowNull: {
         args: false,
@@ -33,8 +32,10 @@ module.exports = (sequelize, DataTypes) => {
   Product.associate = function(models) {
     // associations can be defined here
     Product.belongsTo(models.Category, {
-      foreignKey: 'categoryID',
+      foreignKey: 'categoryId',
+      onDelete: 'CASCADE'
     });
+
   };
   return Product;
 };

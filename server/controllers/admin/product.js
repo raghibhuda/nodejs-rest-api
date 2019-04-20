@@ -3,11 +3,11 @@ import getToken from '../../config/tokenChecker';
 import passport from 'passport';
 require('../../config/passport')(passport);
 
-const { Product } = model
+const { Product } = model;
 
 class Products {
     static create(req, res) {
-        const { name, price, quantity, categoryID } = req.body
+        const { name, price, quantity, categoryId } = req.body
         let token = getToken(req.headers);
         if (token) {
             return Product
@@ -15,7 +15,7 @@ class Products {
                     name,
                     price,
                     quantity,
-                    categoryID
+                    categoryId
                 })
                 .then((product) => {
                     return res.status(201).send({
@@ -71,7 +71,6 @@ class Products {
 
     static delete(req, res) {
         let token = getToken(req.headers)
-
         if (token) {
             return Product
                 .destroy({
@@ -95,3 +94,5 @@ class Products {
         }
     }
 }
+
+export default Products;
